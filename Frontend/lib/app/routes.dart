@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:unisync/features/auth/view/fill_tank.dart';
 import 'package:unisync/features/auth/view/login_screen.dart';
-import 'package:unisync/features/uni-2/carrer_main_screen.dart';
+import 'package:unisync/features/Carrer_Mode/carrer_main_screen.dart';
 
 final loggedOutRoutes = RouteMap(
   routes: {

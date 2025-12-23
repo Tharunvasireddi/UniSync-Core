@@ -4,10 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_flutter/icons_flutter.dart';
 import 'package:unisync/app/providers.dart';
-import 'package:unisync/features/uni-2/sub_views/career_home_screen.dart';
-import 'package:unisync/features/uni-2/sub_views/carrer_card_screen.dart';
-import 'package:unisync/features/uni-2/sub_views/carrer_interview_screen.dart';
-import 'package:unisync/features/uni-2/sub_views/carrer_resume_screen.dart';
+import 'package:unisync/features/Carrer_Mode/sub_views/career_home_screen.dart';
+import 'package:unisync/features/Carrer_Mode/sub_views/carrer_card_screen.dart';
+import 'package:unisync/features/Carrer_Mode/sub_views/carrer_interview_screen.dart';
+import 'package:unisync/features/Carrer_Mode/sub_views/carrer_resume_screen.dart';
 
 class CareerScreen extends ConsumerStatefulWidget {
   const CareerScreen({super.key});
