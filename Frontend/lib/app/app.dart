@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lottie/lottie.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:unisync/app/providers.dart';
 import 'package:unisync/app/routes.dart';
@@ -22,8 +23,11 @@ class _AppState extends ConsumerState<App> {
     final userState = ref.watch(userProvider);
 
     return init.when(
-      loading: () => const MaterialApp(
-        home: Scaffold(body: Center(child: CircularProgressIndicator())),
+      loading: () =>  MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(body: Center(
+          child: Lottie.asset('assets/animations/loading.json'),
+        ),),
       ),
       error: (e, _) => MaterialApp(home: Text(e.toString())),
       data: (_) {
