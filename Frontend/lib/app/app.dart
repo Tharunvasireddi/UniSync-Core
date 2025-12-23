@@ -29,7 +29,7 @@ class _AppState extends ConsumerState<App> {
           child: Lottie.asset('assets/animations/loading.json'),
         ),),
       ),
-      error: (e, _) => MaterialApp(home: Text(e.toString())),
+      error: (e, _) => MaterialApp(home: Scaffold(body: Center(child: Text(e.toString())))),
       data: (_) {
          if(userState == null){
       return MaterialApp.router(

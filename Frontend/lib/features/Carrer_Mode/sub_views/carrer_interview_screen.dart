@@ -14,8 +14,7 @@ class _CarrerInterviewScreenState extends State<CarrerInterviewScreen> {
       physics: BouncingScrollPhysics(),
       child: Column(
         children: [
-          Placeholder(),
-          Placeholder(),
+          
         ],
       ),
     );

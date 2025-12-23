@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:unisync/app/providers.dart';
+import 'package:unisync/constants/constant.dart';
 import 'package:unisync/models/user_model.dart';
 
 final AuthRepositoryProvider = Provider<AuthRepository>((ref) {
@@ -23,6 +24,12 @@ class AuthRepository {
         _googleSignIn = signIn;
 
   Future<UserModel?> signInWithGoogle() async {
+
+
+    // google will not give you signin prompt agai if your loggedin already
+    // chck if loggedin then directly pass
+
+
     final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
     if (googleUser == null) return null;
     final GoogleSignInAuthentication googleAuth =
@@ -41,7 +48,7 @@ class AuthRepository {
       final dio = Dio();
       print('req started////////////////////////////////');
        final res = await dio.post(
-        'http://10.185.91.196:3000/login',
+        ' ${BASE_URI}/login',   //// ${BASE_URI}/login
         data: {
           'emailId' : userEmail,
           "name" : userName,
@@ -54,6 +61,7 @@ class AuthRepository {
         ),
       
       );
+      print(res);
 
       final data = res.data["user"];
 if (data == null) {
@@ -94,12 +102,14 @@ return UserModel.fromMap(data);
   final dio = Dio();
 
   final res = await dio.post(
-    'http://10.185.91.196:3000/login',
+    '${BASE_URI}/auth/login', // http://10.185.91.196:3000/api/auth/login
     data: {
       'emailId': email,
       'name': name,
     },
-  );
+  ); 
+
+  print(res);
 
   return UserModel.fromMap(res.data['user']);
 }
@@ -120,7 +130,7 @@ return UserModel.fromMap(data);
     final dio = Dio();
 
   final res = await dio.patch(
-    'http://10.185.91.196:3000/complete-profile',
+    '${BASE_URI}/auth/complete-profile',
     data: {
       "emailId": emailId,
       'name': name,

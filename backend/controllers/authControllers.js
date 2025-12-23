@@ -17,21 +17,37 @@ export const loginUserController = async (req, res) => {
       emailId: emailId,
     });
 
-    if (!isUserExised) {
-      return res.status(404).json({
-        success: false,
-        message: "user is not found",
+    if (isUserExised) {
+      if (isUserExised.profileComplete == false) {
+        res.status(200).json({
+          success: true,
+          message: "Loggedin but incomplete pro",
+          user: isUserExised,
+          profileStatus: isUserExised.profileComplete
+            ? "user profile is completed"
+            : "user profile is incompleted",
+        });
+      } else {
+        res.status(200).json({
+          success: true,
+          message: "user logined successfully",
+          user: isUserExised,
+        });
+      }
+    } else {
+      const newUser = new User(req.body);
+      console.log(newUser);
+      newUser.profileComplete = false;
+      newUser.photoUrl = photoUrl;
+      console.log(newUser);
+      await newUser.save();
+      return res.json({
+        message: "pending_profile",
+        user: newUser,
       });
     }
-    res.status(200).json({
-      success: true,
-      message: "user logined successfully",
-      profileStatus: isUserExised.profileComplete
-        ? "user profile is completed"
-        : "user profile is incompleted",
-    });
   } catch (e) {
-    console.log("error while user is login :", error);
+    console.log("error while user is login :", e);
     res.status(400).json({
       success: false,
       message: "user logined is failed",
@@ -43,12 +59,12 @@ export const loginUserController = async (req, res) => {
 export const updateUserController = async (req, res) => {
   try {
     const { emailId, name, collegeName, semester, year, about } = req.body;
-    if (!emailId || !name || !collegeName || !semester || !year || !about) {
-      return res.status(404).json({
-        success: false,
-        message: "please provide the user details ",
-      });
-    }
+    // if (!emailId || !name || !collegeName || !semester || !year || !about) {
+    //   return res.status(404).json({
+    //     success: false,
+    //     message: "please provide the user details ",
+    //   });
+    // }
 
     // retrieve the user and update the user
     const updatedUser = await User.findOneAndUpdate(

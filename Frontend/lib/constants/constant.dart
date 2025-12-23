@@ -1,0 +1,1 @@
+const BASE_URI  = "http://10.185.91.196:3000/api";
