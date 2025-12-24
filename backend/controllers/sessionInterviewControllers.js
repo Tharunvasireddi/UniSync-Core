@@ -14,3 +14,15 @@ export const createSessionController = async (req, res) => {
     newSession,
   });
 };
+
+export const getInterViewControllers = async (req, res) => {
+  const userId = req.userId;
+
+  const userTemplates = await Session.findMany({ userId: userId });
+
+  res.status(200).json({
+    success: true,
+    message: "user templates are fetched successfully",
+    data: userTemplates,
+  });
+};
