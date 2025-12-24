@@ -1,7 +1,7 @@
 import {
   createTemplatesController,
   getAllTemplates,
-} from "../controllers/interviewController.js";
+} from "../controllers/templateControllers.js";
 import express from "express";
 
 export const templateRouter = express.Router();

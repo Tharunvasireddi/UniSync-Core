@@ -1,35 +1,38 @@
 import mongoose from "mongoose";
 
-const templateSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-  topics: [
-    {
+const templateSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    topics: [
+      {
+        type: String,
+      },
+    ],
+    evalutionMetrics: [
+      {
+        topic: {
+          type: String,
+          required: true,
+          trim: true,
+        },
+        description: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
+    domain: {
       type: String,
     },
-  ],
-  evalutionMetrics: [
-    {
-      topic: {
-        type: String,
-        required: true,
-        trim: true,
-      },
-      description: {
-        type: String,
-        required: true,
-      },
+    icon: {
+      type: String,
+      required: true,
     },
-  ],
-  domain: {
-    type: String,
   },
-  icon: {
-    type: String,
-    required: true,
-  },
-});
+  { timestamps: true }
+);
 
- export const Template = mongoose.model("Template", templateSchema);
+export const Template = mongoose.model("Template", templateSchema);
