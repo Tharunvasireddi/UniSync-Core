@@ -44,7 +44,7 @@ class _CarrerInterviewScreenState extends ConsumerState<CarrerInterviewScreen> {
       ),
     ),
     data: (data) {
-      final chips = ref.read(carrerControllerProvider.notifier).AvailableDomains;
+      final chips = ["All",...ref.read(carrerControllerProvider.notifier).AvailableDomains];
        return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Wrap(

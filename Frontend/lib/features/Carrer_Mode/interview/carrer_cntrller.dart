@@ -34,6 +34,10 @@ class CarrerController extends AsyncNotifier<List<TemplateModel>> {
   }
 
   void filterByDomain(String domain) {
+    if(domain == "All"){
+      state = AsyncData(_allTemplates);
+      return;
+    }
     final filtered = _allTemplates.where((t) => t.domain == domain).toList();
     state = AsyncData(filtered);
   }
