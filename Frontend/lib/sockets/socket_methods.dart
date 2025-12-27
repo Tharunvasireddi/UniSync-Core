@@ -25,7 +25,14 @@ class SocketMethods {
     });
   }
   
-
+  void onAnswerSubmitted({required String answerTranscript, required String sessionId}) {
+    print('Submitting answer: $answerTranscript for sessionId: $sessionId');
+    socket!.emit("submitAnswer", {
+      'answerTranscript' : answerTranscript,
+      'sessionId' : sessionId,
+    });
+  }
+  
   void interviewQuestionListener(BuildContext context) {
     socket!.on("questionAsked", (data) {
       print("Question asked data from backend is $data");

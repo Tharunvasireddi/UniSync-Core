@@ -77,7 +77,7 @@ class InterviewController extends StateNotifier<InterviewStateModel> {
   if (transcript.isEmpty) return;
 
   print(transcript);
-  // ref.read(socketMethodProvider).sendAnswer(transcript);
+  ref.read(socketMethodProvider).onAnswerSubmitted(answerTranscript: transcript, sessionId: state.sessionId!);
 }
 
 

@@ -26,6 +26,18 @@ const interviewSessionSchema = new mongoose.Schema(
       type: Date,
     },
 
+     questions: [
+    {
+      text: String,
+    }
+  ],
+
+  answers: [
+    {
+      transcript: String,
+    }
+  ],
+
     finalReport: {
       overallScore: {
         type: Number,

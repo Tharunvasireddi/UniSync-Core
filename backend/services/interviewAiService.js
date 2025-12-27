@@ -1,4 +1,3 @@
-
 export class InterviewAIService {
   constructor(llmClient) {
     this.llm = llmClient;
@@ -63,7 +62,7 @@ and if its the user first qsn then go through then greet the user and ask the fu
 Based on the following interview data, generate a final interview report.
 
 Questions and answers:
- questions: ${exchange.questions.map((q => q.text).join(" | "),)}
+ questions: ${exchange.questions.map(((q) => q.text).join(" | "))}
  answers: ${exchange.answers.map((a) => a.transcript).join(" | ")}
 
 Return JSON with:
@@ -76,5 +75,26 @@ Return JSON with:
 
     const response = await this.llm.generate(prompt);
     return JSON.parse(response);
+  }
+
+  async generateOutro(exchange) {
+    const prompt = `
+You are concluding a technical interview.
+
+Thank the candidate for their time.
+Give a short, professional closing message.
+Do NOT ask any questions.
+Do NOT mention scores or results.
+Keep it under 2 sentences.
+
+Return ONLY the outro text.
+Context:
+Questions: ${exchange.questions.map(q => q.text).join(" | ")}
+Answers: ${exchange.answers.map(a => a.transcript).join(" | ")}
+
+`;
+
+    const response = await this.llm.generate(prompt);
+    return response;
   }
 }
