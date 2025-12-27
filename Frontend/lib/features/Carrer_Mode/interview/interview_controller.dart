@@ -51,6 +51,25 @@ class InterviewController extends StateNotifier<InterviewStateModel> {
     });
   }
 
+  void onOutroQuestionReceived({required String outro, required String sessionId}) async{
+    
+    final voice = ref.read(voiceServiceProvider);
+
+    await voice.speak(outro, () {
+      state = state.copyWith(
+        interviewState: InterviewState.evaluating,
+      );
+    });
+
+    
+
+    state = state.copyWith(
+      interviewState: InterviewState.completed,
+      questionRecived: outro,
+      sessionId: sessionId,
+    );
+  }
+
   Future<void> startRecording() async {
   final granted = await ensureMicPermission();
   if (!granted) return;

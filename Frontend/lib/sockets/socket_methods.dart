@@ -33,6 +33,29 @@ class SocketMethods {
     });
   }
   
+  void outroQuestionListener(BuildContext context) {
+    socket!.on("outroQuestion", (data) {
+      print("Outro question data from backend is $data");
+        ref.read(interviewControllerProvider.notifier).onOutroQuestionReceived(
+        outro: data["outro"],
+        sessionId: data["sessionId"],
+      );
+
+      ref.read(interviewControllerProvider.notifier).state = ref.read(interviewControllerProvider.notifier).state.copyWith(
+        interviewState: InterviewState.completed,
+      );
+
+
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Outro Question: ${data}"),
+        ),
+      );
+    });
+  }
+
+
   void interviewQuestionListener(BuildContext context) {
     socket!.on("questionAsked", (data) {
       print("Question asked data from backend is $data");
@@ -62,6 +85,10 @@ class SocketMethods {
   }
 
   void errorListener(BuildContext context) {
+
+    // end interview and go bkk
+
+
     socket!.on("error", (data) {
       print("Error from backend is $data");
       ScaffoldMessenger.of(context).showSnackBar(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:routemaster/routemaster.dart';
 import 'package:unisync/features/Carrer_Mode/interview/interview_controller.dart';
 import 'package:unisync/models/interview_state.dart';
 import 'package:flutter/material.dart';
@@ -20,19 +21,16 @@ class _CoreInterviewScreenState extends ConsumerState<CoreInterviewScreen> {
   @override
   void initState() {
     super.initState();
-  //    WidgetsBinding.instance.addPostFrameCallback((_) {
-  //   final initial = ref.read(interviewListenerProvider);
-
-  //   if (initial != null && initial.questionRecived != null) {
-  //     ref
-  //       .read(interviewControllerProvider.notifier)
-  //       .onQuestionReceived(initial.questionRecived!);
-  //   }
-  // });
   }
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(interviewControllerProvider, (prev, next) {
+  if (next.interviewState == InterviewState.completed) {
+    Routemaster.of(context).push('/');
+    return;
+  }
+});
     final interview = ref.watch(interviewControllerProvider);
     final controller = ref.read(interviewControllerProvider.notifier);
 
