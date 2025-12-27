@@ -61,7 +61,7 @@ class SocketMethods {
       print("Question asked data from backend is $data");
       // ref.read(interviewListenerProvider.notifier).state = 
       // InterviewStateModel(interviewState: InterviewState.asking).copyWith(
-      //   questionRecived: data["question"],
+      //   questionreceived: data["question"],
       //   micOn: false,
       //   questions: ref.read(interviewListenerProvider)?.questions != null
       //     ? [...ref.read(interviewListenerProvider)!.questions!, data["question"]]

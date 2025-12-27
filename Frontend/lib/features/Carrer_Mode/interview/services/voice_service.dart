@@ -40,6 +40,17 @@ class VoiceService {
     );
   }
 
+
+  
+  Future<void> stopSpeaking() async {
+    await _tts.stop();
+  }
+
+
+
+
+
+
   /// Stop STT and return final transcript
   Future<String> stopListening() async {
     if (!_isListening) return _lastTranscript;

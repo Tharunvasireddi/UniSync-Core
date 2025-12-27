@@ -39,7 +39,7 @@ class InterviewController extends StateNotifier<InterviewStateModel> {
   void onQuestionReceived({required String question, required String sessionId}) async{
     state = state.copyWith(
       interviewState: InterviewState.asking,
-      questionRecived: question,
+      questionreceived: question,
       sessionId: sessionId,
     );
     final voice = ref.read(voiceServiceProvider);
@@ -56,16 +56,16 @@ class InterviewController extends StateNotifier<InterviewStateModel> {
     final voice = ref.read(voiceServiceProvider);
 
     await voice.speak(outro, () {
-      state = state.copyWith(
-        interviewState: InterviewState.evaluating,
-      );
+      // state = state.copyWith(
+      //   interviewState: InterviewState.evaluating,
+      // );
     });
 
-    
+
 
     state = state.copyWith(
       interviewState: InterviewState.completed,
-      questionRecived: outro,
+      questionreceived: outro,
       sessionId: sessionId,
     );
   }
@@ -74,7 +74,7 @@ class InterviewController extends StateNotifier<InterviewStateModel> {
   final granted = await ensureMicPermission();
   if (!granted) return;
 
-  state = state.copyWith(isRecording: true);
+  state = state.copyWith(isRecording: true,interviewState: InterviewState.waitingForAnswer);
 
   _currentTranscript = "";
 
@@ -85,18 +85,20 @@ class InterviewController extends StateNotifier<InterviewStateModel> {
 
 
   Future<void> stopRecordingAndSend() async {
-  final transcript =
-      await ref.read(voiceServiceProvider).stopListening();
+  await ref.read(voiceServiceProvider).stopListening();
 
   state = state.copyWith(
     isRecording: false,
     interviewState: InterviewState.evaluating,
   );
 
-  if (transcript.isEmpty) return;
+  if (_currentTranscript.trim().isEmpty) {
+    startRecording();
+    return;
+  }
 
-  print(transcript);
-  ref.read(socketMethodProvider).onAnswerSubmitted(answerTranscript: transcript, sessionId: state.sessionId!);
+  print(_currentTranscript);
+  ref.read(socketMethodProvider).onAnswerSubmitted(answerTranscript: _currentTranscript, sessionId: state.sessionId!);
 }
 
 

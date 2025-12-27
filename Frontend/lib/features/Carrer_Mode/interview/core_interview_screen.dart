@@ -50,15 +50,18 @@ class _CoreInterviewScreenState extends ConsumerState<CoreInterviewScreen> {
           children: [
             Align(
               alignment: Alignment.centerLeft,
-              child: IconButton(
-                icon: const Icon(Icons.close, color: Colors.white70),
-                onPressed: () => Navigator.pop(context),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: IconButton(
+                  icon: const Icon(Icons.close, color: Colors.white70),
+                  onPressed: () => Navigator.pop(context),
+                ),
               ),
             ),
             const Spacer(),
             _Avatar(interview),
             const SizedBox(height: 24),
-            _QuestionText(interview.questionRecived),
+            _QuestionText(interview.questionreceived),
             const Spacer(),
             Column(
               children: [
@@ -96,7 +99,7 @@ class _CoreInterviewScreenState extends ConsumerState<CoreInterviewScreen> {
                 const SizedBox(height: 12),
                 Text(
                   !micEnabled
-                      ? "Listen to the interviewer"
+                      ?  (interview.interviewState == InterviewState.evaluating)? "Evaluating" : "Listen to the interviewer"
                       : isRecording
                           ? "Tap ✖ to stop & submit"
                           : "Tap 🎤 to start answering",
@@ -116,7 +119,8 @@ class _CoreInterviewScreenState extends ConsumerState<CoreInterviewScreen> {
 
   @override
   void dispose() {
-    // Later: stop TTS / STT cleanly if needed
+    final voice = ref.read(voiceServiceProvider);
+    voice.stopSpeaking();
     super.dispose();
   }
 }

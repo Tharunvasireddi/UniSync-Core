@@ -10,7 +10,7 @@ class InterviewStateModel {
   final InterviewState interviewState;
   final String? sessionId;
   final bool micOn;
-  final String? questionRecived;
+  final String? questionreceived;
   final bool isRecording;
   final String? answerToSend;
   final List<String>? questions;
@@ -19,7 +19,7 @@ class InterviewStateModel {
     required this.interviewState,
     this.sessionId,
     this.micOn = false,
-    this.questionRecived,
+    this.questionreceived,
     this.isRecording = false,
     this.answerToSend,
     this.questions,
@@ -34,7 +34,7 @@ class InterviewStateModel {
     InterviewState? interviewState,
     String? sessionId,
     bool? micOn,
-    String? questionRecived,
+    String? questionreceived,
     bool? isRecording,
     String? answerToSend,
     List<String>? questions,
@@ -44,7 +44,7 @@ class InterviewStateModel {
       interviewState: interviewState ?? this.interviewState,
       sessionId: sessionId ?? this.sessionId,
       micOn: micOn ?? this.micOn,
-      questionRecived: questionRecived ?? this.questionRecived,
+      questionreceived: questionreceived ?? this.questionreceived,
       isRecording: isRecording ?? this.isRecording,
       answerToSend: answerToSend ?? this.answerToSend,
       questions: questions ?? this.questions,
