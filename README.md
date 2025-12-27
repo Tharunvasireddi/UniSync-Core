@@ -5,14 +5,14 @@
 
 - if you want to contribute please try to solve any exsisting issues or create a new branch( naming convenntions will be uploaded soon) and raise a PR.
 
-## Campus Mode
+## 1.Campus Mode
 - Events
 - Hackathons/Internships
 - Peer Connect
 - Live Attendance
 
 
-## Carrer Mode
+## 2.Carrer Mode
 - AI Mock Interview
 - Resume Builder & ATS Score
 - Roadmaps
