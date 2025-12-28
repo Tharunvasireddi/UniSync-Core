@@ -31,62 +31,62 @@ class _CareerScreenState extends ConsumerState<CareerScreen> {
         child: Column(
           children: [
             // Header Section
-            // Padding(
-            //   padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
-            //   child: Row(
-            //     children: [
-            //       Column(
-            //         crossAxisAlignment: CrossAxisAlignment.start,
-            //         children: [
-            //           Row(
-            //             children: [
-            //               CircleAvatar(
-            //                 radius: 20,
-            //                 backgroundColor: Colors.grey[300],
-            //                 child: Container(
-            //                   decoration: BoxDecoration(
-            //                     shape: BoxShape.circle,
-            //                     border: Border.all(
-            //                         color: Colors.blueAccent, width: 2),
-            //                   ),
-            //                   child: ClipOval(
-            //                     child: CachedNetworkImage(
-            //                         imageUrl: user?.photoUrl ?? "",
-            //                         width: 60,
-            //                         height: 60,
-            //                         fit: BoxFit.fill,
-            //                         placeholder: (context, url) =>
-            //                             CircularProgressIndicator(
-            //                               strokeWidth: 2,
-            //                               color: Colors.blue,
-            //                             ),
-            //                         errorWidget: (context, url, error) {
-            //                           return Icon(
-            //                             Icons.person,
-            //                           );
-            //                         }),
-            //                   ),
-            //                 ),
-            //               ),
-            //               SizedBox(
-            //                 width: 10,
-            //               ),
-            //               Text(
-            //                 'Hey! ${user?.name.split(' ').first ?? 'Guest'}',
-            //                 style: GoogleFonts.poppins(
-            //                   fontSize: 20,
-            //                   fontWeight: FontWeight.bold,
-            //                   color: Colors.black87,
-            //                 ),
-            //               ),
-            //               const Text(' 👋', style: TextStyle(fontSize: 20)),
-            //             ],
-            //           ),
-            //         ],
-            //       ),
-            //     ],
-            //   ),
-            // ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
+              child: Row(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 20,
+                            backgroundColor: Colors.grey[300],
+                            child: Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                    color: Colors.blueAccent, width: 2),
+                              ),
+                              child: ClipOval(
+                                child: CachedNetworkImage(
+                                    imageUrl: user?.photoUrl ?? "",
+                                    width: 60,
+                                    height: 60,
+                                    fit: BoxFit.fill,
+                                    placeholder: (context, url) =>
+                                        CircularProgressIndicator(
+                                          strokeWidth: 2,
+                                          color: Colors.blue,
+                                        ),
+                                    errorWidget: (context, url, error) {
+                                      return Icon(
+                                        Icons.person,
+                                      );
+                                    }),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            'Hey! ${user?.name.split(' ').first ?? 'Guest'}',
+                            style: GoogleFonts.poppins(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black87,
+                            ),
+                          ),
+                          const Text(' 👋', style: TextStyle(fontSize: 20)),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
 
             // Scrollable Content
            Expanded(child: screens[_page]),
@@ -136,8 +136,7 @@ class _CareerScreenState extends ConsumerState<CareerScreen> {
   List<Widget> screens = [
      CareerHomeScreen(),
      CarrerInterviewScreen(),
-     InterviewResultsScreen(),
-    //  CarrerResumeScreen(),
+     CarrerResumeScreen(),
 
      CarrerCardScreen()
   ];

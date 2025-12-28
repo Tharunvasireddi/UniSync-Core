@@ -8,27 +8,31 @@ import 'package:unisync/models/interview_report_model.dart';
 
 final ReportsRepositoryProvider = Provider((ref) => ReportsRepository());
 final ReportsControllerProvider = AsyncNotifierProvider<ReportsController,List<InterviewSession>>(ReportsController.new);
-
-class ReportsController extends AsyncNotifier<List<InterviewSession>>{
-  late final ReportsRepository _repo;
-  late final String userId;
-  late final String templateId;
-
+class ReportsController extends AsyncNotifier<List<InterviewSession>> {
   @override
   FutureOr<List<InterviewSession>> build() {
-    _repo = ref.read(ReportsRepositoryProvider);
-    userId = ref.read(userProvider)!.id!;
-    templateId = ref.read(selectedTemplateProvider)!.id;
-    return _repo.getInterviewReports(userId: userId, templateId: templateId);
+    final repo = ref.read(ReportsRepositoryProvider);
+    final userId = ref.read(userProvider)!.id!;
+    final templateId = ref.read(selectedTemplateProvider)!.id;
+
+    return repo.getInterviewReports(
+      userId: userId,
+      templateId: templateId,
+    );
   }
 
-
-
-
-
-
-   Future<void> refresh() async {
+  Future<void> refresh() async {
     state = const AsyncLoading();
-    state = AsyncData(await _repo.getInterviewReports(userId: userId,templateId: templateId));
+
+    final repo = ref.read(ReportsRepositoryProvider);
+    final userId = ref.read(userProvider)!.id!;
+    final templateId = ref.read(selectedTemplateProvider)!.id;
+
+    state = AsyncData(
+      await repo.getInterviewReports(
+        userId: userId,
+        templateId: templateId,
+      ),
+    );
   }
 }

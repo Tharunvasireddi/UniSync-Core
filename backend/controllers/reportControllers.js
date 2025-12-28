@@ -11,6 +11,8 @@ export const reportControllers = async (req, res) => {
       });
     }
 
+    console.log(templateId + userId);
+
     const sessions = await InterviewSession.find({
       userId,
       templateId,

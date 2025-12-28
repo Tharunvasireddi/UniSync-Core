@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:unisync/app/providers.dart';
+import 'package:unisync/features/Carrer_Mode/interview/controllers/reports_controller.dart';
 import 'package:unisync/features/Carrer_Mode/interview/view/carrer_interview_screen.dart';
 import 'package:unisync/features/Carrer_Mode/interview/controllers/interview_controller.dart';
 import 'package:unisync/models/template_model.dart';
@@ -43,7 +44,7 @@ void initState() {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _appBar(context),
+            _appBar(context,ref),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(
@@ -174,7 +175,7 @@ Widget _evalWidget(String subheading, String heading) {
   );
 }
 
-Widget _appBar(BuildContext context) {
+Widget _appBar(BuildContext context, WidgetRef ref) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Container(
@@ -193,6 +194,7 @@ Widget _appBar(BuildContext context) {
           ),
 
           ElevatedButton(onPressed: () {
+            ref.invalidate(ReportsControllerProvider);
             Routemaster.of(context).push('/reportsScreen');
           }, child: Text('Reports'))
         ],
