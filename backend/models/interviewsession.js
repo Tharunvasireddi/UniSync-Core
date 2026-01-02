@@ -20,11 +20,11 @@ const interviewSessionSchema = new mongoose.Schema(
 
     startedAt: {
       type: Date,
-      default: Date.now,
     },
 
     endedAt: {
       type: Date,
+      default: Date.now,
     },
   },
   { timestamps: true }

@@ -5,9 +5,12 @@ import authRouter from "./routes/auth.js";
 import dotenv from "dotenv";
 import { templateRouter } from "./routes/interviewRoutes.js";
 import sessionRouter from "./routes/interviewSession.js";
+import { Server } from "socket.io";
 dotenv.config();
 
 const app = express();
+const server = http.createServer(app);
+export  const socketIo = new Server(server);
 
 app.use(express.json());
 app.use(cookieParser());
