@@ -11,6 +11,7 @@ import 'package:unisync/features/Carrer_Mode/interview/view/interview_results_sc
 import 'package:unisync/features/Carrer_Mode/interview/view/user_interview_details.dart';
 import 'package:unisync/features/Carrer_Mode/cards/view/carrer_card_screen.dart';
 import 'package:unisync/features/Carrer_Mode/interview/view/carrer_interview_screen.dart';
+import 'package:unisync/features/Carrer_Mode/portifolio/view/pdf_upload.dart';
 import 'package:unisync/features/Carrer_Mode/sub_views/carrer_resume_screen.dart';
 import 'package:unisync/features/services/appMode.dart';
 
@@ -83,7 +84,7 @@ class _CareerScreenState extends ConsumerState<CareerScreen> {
     UserInterviewDetails(),
          CarrerCardScreen(),
 
-     CarrerResumeScreen()
+     PdfUpload(),
   ];
 
 
