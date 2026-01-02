@@ -11,8 +11,9 @@ import { reportRouter } from "./routes/reportRoutes.js";
 import { domainRouter } from "./routes/domain.js";
 import { questionRouter } from "./routes/questions.js";
 import { questionProgressRouter } from "./routes/questionProgressRoutes.js";
-
-
+import { documentRouter } from "./routes/documentRoutes.js";
+import upload from "./configs/multer.js";
+import { portfolioRouter } from "./routes/portfolioRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -23,16 +24,15 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/auth", authRouter);
-app.use("/api/carrer",reportRouter);
+app.use("/api/carrer", reportRouter);
 app.use("/api/carrer", templateRouter);
 app.use("/api/domain/", domainRouter);
 app.use("/api/questions/", questionRouter);
-app.use("/api/progress/",questionProgressRouter);
+app.use("/api/progress/", questionProgressRouter);
+app.use("/api/resume", upload.single("file"), documentRouter);
+app.use("/api/portfolio", portfolioRouter);
 
 initSockets(io);
-
-
-
 
 await connectDb();
 

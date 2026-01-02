@@ -3,11 +3,10 @@
 
 // const ai = new GoogleGenAI({apiKey: GEMINI_API_KEY});
 
-
 // export class GeminiResponder {
 //   GeminiResponder() {};
 
-//   async generate(qsn) { 
+//   async generate(qsn) {
 //   const response = await ai.models.generateContent({
 //     model: 'gemini-2.5-flash',
 //     contents: qsn,
@@ -45,3 +44,5 @@ export class OllamaResponder {
     return data.response;
   }
 }
+
+
